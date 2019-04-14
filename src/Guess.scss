@@ -1,0 +1,79 @@
+@import './variables.scss';
+
+.guess-area {
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  label {
+    padding-top: 25px;
+    padding-bottom: 15px;
+    font-size: 26px;
+  }
+
+  .guess-entry {
+    display: flex;
+  }
+
+  .single-guess-input {
+    padding-left: 10px;
+    font-size: 18px;
+    height: 40px;
+    width: 225px;
+    border-radius: 5px 0px 0px 5px;
+    outline-color: $secondary-color;
+    cursor: pointer;
+  }
+
+  .single-guess-btn {
+    border-radius: 0px 5px 5px 0px;
+    height: 40px;
+    width: 40px;
+    border: none;
+    background: $secondary-color;
+    cursor: pointer;
+    outline-color: $secondary-color;
+
+    &:hover,
+    &:focus {
+      background: $blue;
+    }
+
+    .fa-arrow-right {
+      color: white;
+      font-size: 20px;
+    }
+  }
+
+  .guess-response {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+
+    p {
+      padding-top: 3px;
+    }
+
+    .fas {
+      margin-right: 10px;
+    }
+    
+    .fa-check {
+      font-size: 26px;
+      color: rgb(65, 160, 65);
+    }
+
+    .fa-times {
+      font-size: 30px;
+      color: rgb(186, 52, 52);
+    }
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}

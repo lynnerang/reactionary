@@ -1,0 +1,26 @@
+@import './variables.scss';
+
+.App-navigation {
+  background: $dark-gray;
+}
+
+.App-navigation {
+  height: 100%;
+  width: 200px;
+  padding-top: 20px;
+}
+
+.nav-items {
+  color: white;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-left: 40px;
+  border-left: 3px solid $dark-gray;
+
+  &:hover {
+    color: $secondary-color;
+    border-left: 3px solid $secondary-color;
+  }
+}
