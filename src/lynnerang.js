@@ -27,7 +27,7 @@ const reactTerms = [
     "id": 5,
     "term": "CDN",
     "fakeAnswers": ["Internet", "Http"],
-    "definition": "The acronum for a system of distributed servers that deliver pages/Web content to a user based on the geo locations, webpage origin, and the content delivery server.",
+    "definition": "The acronym for a system of distributed servers that deliver pages/Web content to a user based on the geo locations, webpage origin, and the content delivery server.",
     "example": "Akamai, Amazon CloudFront, CacheFly are examples of these."
   }, {
     "id": 6,
@@ -88,16 +88,16 @@ const reactTerms = [
     "term": "Keys",
     "fakeAnswers": ["State", "Props"],
     "definition": "This is a special string attribute you need to include when creating arrays of elements. It helps React identify which items were changed, added, or removed, and should be given to the elements inside an array to give them a stable identity.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 16,
     "term": "Refs",
     "fakeAnswers": ["Keys", "Props"],
     "definition": "It's a special attribute you can attach to any component. When it's a callback function, it receives the underlying DOM element or class instance as its argument. This allows you direct access to the DOM element or component instance.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 17,
-    "term": "Events",
+    "term": "Event Listeners",
     "fakeAnswers": ["Functions", "Properties"],
     "definition": "These are something commonly used across JavaScript to handle user interactions, but they have syntactic differences in React e.g. named w/ camelCase rather than lowercase, and with JSX passing a function rather than a string.",
     "example": "./images/example{exampleId}.png"
@@ -106,7 +106,7 @@ const reactTerms = [
     "term": "Reconciliation",
     "fakeAnswers": ["Recreation", "Navigation"],
     "definition": "A process in React where when a component’s props or state change, and React decides whether a DOM update is necessary by comparing the newly returned element with the previously rendered one. When different, React will update the DOM.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 19,
     "term": "Factories",
@@ -148,49 +148,49 @@ const reactTerms = [
     "term": "setState()",
     "fakeAnswers": ["componentDidMount()", "constructor()"],
     "definition": "A react method used to update a component state property.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 26,
     "term": "componentDidMount()",
     "fakeAnswers": ["componentWillMount()", "componentWillUpdate()"],
     "definition": "A react lifecycle method used to do all the setup you couldn't do without a DOM.  Typically used to load your data, and also do things you couldn't before there was a component and DOM to play with.  Can call setState.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 27,
     "term": "componentWillMount()",
     "fakeAnswers": ["componentDidMount()", "componentWillUpdate()"],
     "definition": "One of the react lifecycle methods that is called only one time before the initial render.  It can be tricky because there's nothing to play with yet involving the DOM. The most common use case is App configuration in your root component.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 28,
     "term": "componentWillReceiveProps()",
     "fakeAnswers": ["componentWillMount()", "shouldComponentUpdate()"],
     "definition": "May be used when data was loaded by a parent component and is being passed down to get access to both next and current props.  Before the component does anything w/ the new props, this method is called, with the next props as the arg.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 29,
     "term": "shouldComponentUpdate()",
     "fakeAnswers": ["componentWillMount()", "componentWillUpdate()"],
     "definition": "May be used when you want to explicitly tell a component not to render when it receives new props or new state.  It returns true or false, and defaults to true.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 30,
     "term": "componentWillUpdate()",
     "fakeAnswers": ["componentWillMount()", "shouldComponentUpdate()"],
     "definition": "May be used if you were using shouldComponentUpdate and needed to do something when props change.  Similar to componentWillReceiveProps(), but you are now allowed to call this.setState.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 31,
     "term": "componentDidUpdate()",
     "fakeAnswers": ["componentWillMount()", "componentWillUpdate()"],
     "definition": "May be used to update the DOM in response to prop or state changes, e.g. if you want to avoid rerendering certain things in the DOM but not others.",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 32,
     "term": "componentWillUnmount()",
     "fakeAnswers": ["shouldComponentUpdate()", "componentWillUpdate()"],
     "definition": "May be used when a component is going away forever to cancel outgoing network requests, or remove event listeners associated with it (a.k.a. clean up anything to do that solely involves the component in question).",
-    "example": "./images/example{exampleId}.png"
+    "example": ""
   }, {
     "id": 33,
     "term": "Functional Component",
