@@ -19,11 +19,24 @@ class Card extends Component {
   }
 
   render() {
-    // const exampleId = this.props.cardData.id;
-    const url = require(`./images/example28.png`);
+    const substring = this.props.cardData.example ? this.props.cardData.example.substring(0,3) : null;
+    let example;
+    console.log(substring);
+
+    if (!this.props.cardData.example) {
+      example = <div><p>No example for this card</p></div>
+    } else if (substring === './i' ) {
+      const url = require(`./images/example${this.props.cardData.id}.png`);
+      example = <img className='example-img' src={url} alt='visual example' />
+    } else if (substring === 'dat') {
+      example = <img className='example-img' src={this.props.cardData.example} alt='visual example' />
+    } else {
+      example = <div><p>{this.props.cardData.example}</p></div>;
+    } 
 
     let popup = this.state.showExample && <div className='popup'>
-        <img className='example-img' src={url} alt='visual example' />
+        {/* <img className='example-img' src={url} alt='visual example' /> */}
+        {example}
         <i className='fas fa-times popup-close-btn' onClick={this.closeExample}> close</i>
       </div>;
  

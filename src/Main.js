@@ -21,6 +21,7 @@ class Main extends Component {
     const updatedCards = this.state.myCards;
     updatedCards.push(newCard);
     this.updateMyCards(updatedCards);
+    console.log(newCard);
   }
 
   deleteMyCard = (e) => {

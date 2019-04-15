@@ -4,11 +4,6 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
-// import Home from './Home.js';
-// import Play from './Play.js';
-// import MyCards from './MyCards.js';
-// import Stats from './Stats.js';
-// import Links from './Links.js';
 
 
 ReactDOM.render(
