@@ -1,0 +1,61 @@
+@import './variables.scss';
+
+.new-card-form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $secondary-color;
+  border-radius: 5px;
+  padding: 20px;
+  height: 380px;
+  width: 335px;
+
+  label {
+    font-size: 18px;
+  }
+
+  input {
+    width: 290px;
+    margin-bottom: 25px;
+    margin-top: 5px;
+    border-radius: 3px;
+    outline-color: $secondary-color;
+    min-height: 25px;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  #my-desc-input {
+    height: 80px;
+  }
+
+  #my-example-input {
+    margin-bottom: 0;
+  }
+
+  .new-card-form-btns {
+    display: flex;
+    align-self: flex-end;
+
+    button {
+      margin-top: 15px;
+      margin-left: 15px;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    .save-card-btn {
+      background: $secondary-color;
+      border: none;
+      color: white;
+  
+      &:hover {
+        background: $blue;
+      }
+    }
+
+    .cancel-card-btn:hover {
+      color: darkred;
+      border-color: darkred;
+    }
+  }
+}

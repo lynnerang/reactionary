@@ -1,28 +1,17 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 
-class Navigation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
-  render() {
+function Navigation(props) {
     return (
       <nav className='App-navigation'>
-        <ul>
-          <li className='nav-items'>Home</li>
-          <li className='nav-items'>Play</li>
-          <li className='nav-items'>My Cards</li>
-          <li className='nav-items'>Stats</li>
-          <li className='nav-items'>Links</li>
-        </ul>
+          <NavLink className='nav-link' exact='true' to='/'><i class="fas fa-home"></i>Home</NavLink>
+          <NavLink className='nav-link' to='/play'><i class="fas fa-play"></i>Play</NavLink>
+          <NavLink className='nav-link' to='/mycards'><i class="far fa-copy"></i>My Cards</NavLink>
+          <NavLink className='nav-link' to='/stats'><i class="fas fa-chart-pie"></i>Stats</NavLink>
+          <NavLink className='nav-link' to='/links'><i class="fas fa-link"></i>Links</NavLink>
       </nav>
     )
-  }
 }
 
 export default Navigation;

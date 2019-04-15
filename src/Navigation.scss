@@ -10,17 +10,37 @@
   padding-top: 20px;
 }
 
-.nav-items {
+nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.nav-link { 
+  text-decoration: none;
   color: white;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding-left: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 25px;
   border-left: 3px solid $dark-gray;
+  cursor: pointer;
+
+  .fas, .far, .fas {
+    width: 20px;
+    font-size: 14px;
+    padding-right: 10px;
+  }
 
   &:hover {
     color: $secondary-color;
     border-left: 3px solid $secondary-color;
+    background: rgba(255, 255, 255, 0.262);
   }
 }
+
+.active {
+  color: $secondary-color!important;
+  border-left: 3px solid $secondary-color;
+  background: rgba(225, 225, 225, 0.16);
+} 
+

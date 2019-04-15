@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+
+.home-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-options {
+  flex: 2;
+}
+
+.home-option {
+  max-width: 600px;
+  border: 1px solid rgba(211, 211, 211, 0.475);
+  border-radius: 5px;
+  margin: 15px 0px;
+  padding: 15px;
+  cursor: pointer;
+
+  p {
+    font-size: 18px;
+  }
+
+  &:hover {
+    h3 {
+      color: $blue;
+    }
+    border-color: $blue;
+  }
+}
+
+.home-link {
+  text-decoration: none;
+}
+
+.home-option-heading {
+  font-size: 22px;
+}
+
+.home-image-area {
+  flex: 1;
+}
+
+.home-image {
+  height: 250px;
+  opacity: .6;
+}
