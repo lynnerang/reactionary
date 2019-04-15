@@ -23,12 +23,11 @@ class Card extends Component {
     const url = require(`./images/example28.png`);
 
     let popup = this.state.showExample && <div className='popup'>
-        <img className='example-img' src={url} alt='visual example' onBlur={this.closeExample}/>
+        <img className='example-img' src={url} alt='visual example' />
         <i className='fas fa-times popup-close-btn' onClick={this.closeExample}> close</i>
       </div>;
  
-    let term = this.props.hasTerm ? this.props.cardData.term
-    : 'What am I?';
+    let term = this.props.hasTerm ? this.props.cardData.term : 'What am I?';
     
     const deleteBtn = this.props.canDelete && <i className='fa fa-trash' onClick={this.props.deleteMyCard}></i>
 

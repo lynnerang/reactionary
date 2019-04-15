@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.scss';
-import icon from './images/flashicon.png';
+import head from './images/head2.png'
 import { NavLink } from 'react-router-dom';
 
 
@@ -39,7 +39,7 @@ function Home (props) {
             </div>
           </div>
           <div className='home-image-area'>
-            <img className='home-image' src={icon} alt='flashcards icon' />
+            <img className='home-image' src={head} alt='flashcards icon' />
           </div>
         </div>
       </>
