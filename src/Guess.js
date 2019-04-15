@@ -13,17 +13,25 @@ class Guess extends Component {
 
   checkAnswer = (e) => {
     const input = e.target.closest('.guess-entry').querySelector('input');
-    var stringSimilarity = require('string-similarity');
-    var similarity = stringSimilarity.compareTwoStrings(input.value, this.props.answer);
-
-    if (similarity >= .72) {
+    if (this.calcSimilarity(input) >= .72) {
+      this.showResponse('That is correct, nice job!', 'fa-check');
       this.props.removeCard();
-      this.showResponse('That is correct, nice job!', 'fa-check') ;
     } else {
       this.showResponse('Not quite!  We\'ll try this one again later.', 'fa-times');
     }
+    this.getNextTurn(input);
+  }
+
+  getNextTurn = (input) => {
     input.value = '';
+    this.props.updateGuessCount();
     setTimeout(() => { this.props.getRandomCard() }, 2000);
+  }
+
+  calcSimilarity = (input) => {
+    const check = require('string-similarity');
+    const similarity = check.compareTwoStrings(input.value.toLowerCase(), this.props.answer.toLowerCase());
+    return similarity;
   }
 
   showResponse = (text, icon) => {
@@ -36,7 +44,6 @@ class Guess extends Component {
   }
 
   render() {
-    console.log(this.props.answer)
     let iconClass = `fas ${this.state.errorIconClass}`;
 
     return (
@@ -54,4 +61,4 @@ class Guess extends Component {
   }
 }
 
-      export default Guess;
+export default Guess;

@@ -1,0 +1,50 @@
+import React, { Component } from 'react';
+import './CardForm.scss';
+
+const reader = new FileReader();
+const validType = file => (/\.(jpe?g|png|gif)$/i.test(file.name));
+
+class CardForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    }
+  }
+
+  saveCard = (e) => {
+    console.log(e.target.result); //undefined
+    const term = document.querySelector('#my-term-input').value;
+    const desc = document.querySelector('#my-desc-input').value;
+    const file = e.target.result;
+
+    this.props.saveNewCard(term, desc, file);
+    document.querySelectorAll('.new-card-input').forEach(i => i.value = '');
+  }
+
+  getImage = (e) => {
+    if (e.target.files[0] && validType(e.target.files[0])) {
+      reader.readAsDataURL(e.target.files[0]); 
+      reader.onload = this.saveCard;
+    } 
+  }
+
+  render() {
+    return (
+      <form className='new-card-form'>
+        <label htmlFor='my-term-input'>Term:</label>
+        <input type='text' className='new-card-input' id='my-term-input' maxLength='30'></input>
+        <label htmlFor='my-desc-input'>Description:</label>
+        <input type='textarea' className='new-card-input' id='my-desc-input' maxLength='80'></input>
+        <label htmlFor='my-desc-input'>Example:</label>
+        <input type='file' className='new-card-input' id='my-example-input' onChange={this.getImage}></input>
+        <div className='new-card-form-btns'>
+          <button type='button' className='cancel-card-btn' onClick={this.props.cancelForm}>Cancel</button>
+          <button type='button' className='save-card-btn' onClick={this.saveCard}>Save</button>       
+        </div>
+      </form>
+    )
+  }
+}
+
+export default CardForm;

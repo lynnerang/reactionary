@@ -1,5 +1,33 @@
 @import './variables.scss';
 
+.round-end-dialog {
+  background: white;
+  padding: 30px 40px;;
+  border-radius: 10px;
+  max-width: 600px;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: $primary-color;
+  }
+
+  button {
+    border: none;
+    border-radius: 5px;
+    background: $secondary-color;
+    padding: 10px 12px 8px 12px;
+    margin-top: 30px;
+    color: white;
+    font-weight: 400;
+    align-self: flex-end;
+
+    &:hover {
+      background: $blue;
+    }
+  }
+}
 
 .card-area {
   display: flex;
@@ -19,8 +47,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 210px;
-  height: 300px;
+  width: 160px;
+  height: 200px;
   color: gray;
 
   p {
