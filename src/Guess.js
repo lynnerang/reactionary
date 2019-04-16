@@ -24,7 +24,7 @@ class Guess extends Component {
 
   getNextTurn = (input) => {
     input.value = '';
-    this.props.updateGuessCount();
+    this.props.updateGuessCount('add');
     setTimeout(() => { this.props.getRandomCard() }, 2000);
   }
 

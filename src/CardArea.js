@@ -4,9 +4,8 @@ import Card from './Card.js';
 import Guess from './Guess.js';
 
 const storage = JSON.parse(localStorage.getItem('remaining cards')) || [];
-const guessCount = JSON.parse(localStorage.getItem('guess count')) || 0;
-const gameCount = JSON.parse(localStorage.getItem('game count')) || 0;
-const highScore = JSON.parse(localStorage.getItem('high score')) || {totalCards: 0, guesses: 0};
+
+
 
 class CardArea extends Component {
   constructor(props) {
@@ -14,13 +13,9 @@ class CardArea extends Component {
 
     this.state = {
       cards: [],
-      cardTotal: 0,
       remainingCards: storage,
       randomIndex: 0,
       randomCard: {},
-      guessCount: guessCount,
-      gameCount: gameCount,
-      highScore: highScore,
       hasTerm: this.props.mode !== 'Guess' && this.props.mode !== 'Choice',
       showDialog: false
     }
@@ -31,8 +26,32 @@ class CardArea extends Component {
   }
 
   getCards = () => {
-    const cardList = this.props.data.concat(this.props.myCards);
-    this.setState({cards: cardList, cardTotal: cardList.length}, () => this.getRandomCard());
+    let cardList = this.props.data.concat(this.props.myCards);
+    this.setState({cards: cardList}, () => {
+      !this.state.remainingCards.length ? this.updateRemainingCards(cardList)
+      : this.checkRemainingCards();
+      this.getRandomCard();
+    });
+  }
+
+  checkRemainingCards = () => {
+    let remaining = this.state.remainingCards;
+    this.state.cards.forEach(card => {
+      if (card.new) {
+        remaining.push(card);
+        this.props.markCardUsed(card.id);
+      }
+    });
+
+    const allCardIds = this.state.cards.map(card => card.id);
+    remaining.forEach(card => {
+      if (!allCardIds.includes(card.id)) {
+        const index = remaining.findIndex(i => i.id === card.id);
+        remaining.splice(index, 1);
+      }
+    })
+
+    this.updateRemainingCards(remaining);
   }
 
   getRandomCard = () => {
@@ -42,12 +61,12 @@ class CardArea extends Component {
   }
 
   removeCard = () => {
-    let updatedCards = this.state.remainingCards;
+    let updatedCards = [...this.state.remainingCards];
 
     if (updatedCards.length > 1) {
       updatedCards.splice(this.state.randomIndex, 1);
     } else {
-      updatedCards = this.state.cards;
+      updatedCards = [...this.state.cards];
       this.endGame();
       this.setState({showDialog: true});
     }
@@ -55,41 +74,19 @@ class CardArea extends Component {
   }
 
   updateRemainingCards = (cards) => {
-    this.setState({remainingCards: cards}, () => {
-      localStorage.setItem('remaining cards', JSON.stringify(cards));
-    });
+    this.setState({remainingCards: cards});
+    localStorage.setItem('remaining cards', JSON.stringify(cards));
   }
 
-  updateGuessCount= () => {
-    const newTotal = this.state.guessCount + 1;
-    this.setState({guessCount: newTotal});
-    localStorage.setItem('guess count', JSON.stringify(newTotal));
-  }
-
-  resetGuessCount = () => {
-    this.setState({guessCount: 0});
-    localStorage.setItem('guess count', JSON.stringify(0));
-  }
-
-  checkHighScore = () => {
-    const highDiff =  this.state.highScore.guesses / this.state.highScore.totalCards;
-    const currentDiff = this.state.guessCount / this.state.cards;
-
-    currentDiff < highDiff && this.setState({highScore: {totalCards: this.state.cards, guesses: this.state.guessCount}}, () => {
-      localStorage.setItem('high score', JSON.stringify(0));
-    });
-  }
-
-  updateGameCount = () => {
-    const gameCount = this.state.gameCount + 1;
-    this.setState({gameCount: gameCount});
-    localStorage.setItem('game count', JSON.stringify(gameCount));
+  resetGame = () => {
+    this.updateRemainingCards([]);
+    this.props.updateGuessCount(0);
   }
 
   endGame = () => {
-    this.updateGameCount();
-    this.checkHighScore();
-    this.resetGuessCount();
+    this.props.updateGameCount(this.state.guessCount);
+    this.props.checkHighScore(this.state.guessCount, this.state.cards.length);
+    this.resetGame();
   }
 
   closeDialog = () => {
@@ -99,6 +96,7 @@ class CardArea extends Component {
   render() {
     const totalCards = this.state.cards.length;
     const cardsLeft = this.state.remainingCards.length;
+    // console.log(this.state.guessCount);
     const percent = (totalCards - cardsLeft) / totalCards * 100;
     const style = {animationDelay: `-${percent}s`};
 
@@ -107,14 +105,14 @@ class CardArea extends Component {
              answer={this.state.randomCard.term} 
              getRandomCard={this.getRandomCard} 
              removeCard={this.removeCard}
-             updateGuessCount={this.updateGuessCount}
+             updateGuessCount={this.props.updateGuessCount}
       /> 
     
     const dialog = this.state.showDialog && 
       <div className='popup'>
         <div className='round-end-dialog' onBlur={this.closeDialog}>
           <h2>Congratulations!</h2>
-          <p>You have answered all <span>{totalCards}</span> cards using <span>{this.state.guessCount}</span> guesses.  The game has reset so you can replay any time you feel like brushing up!</p>
+          <p>You have answered all flash cards.  The game has reset so you can replay any time you feel like brushing up!</p>
           <button type='button' onClick={this.closeDialog}>OK</button>
         </div>
       </div>;
@@ -126,6 +124,7 @@ class CardArea extends Component {
         <Card hasTerm={this.state.hasTerm} 
               canDelete={false} 
               cardData={this.state.randomCard}
+              removeCardFromRemaining={this.removeCardFromRemaining}
         />
         {guess}
         <article className='progress-area'>

@@ -13,10 +13,9 @@ class CardForm extends Component {
   }
 
   saveCard = (e) => {
-    console.log(e.target.result); //undefined
     const term = document.querySelector('#my-term-input').value;
     const desc = document.querySelector('#my-desc-input').value;
-    const file = e.target.result;
+    const file = document.querySelector('#my-example-input').value;
 
     this.props.saveNewCard(term, desc, file);
     document.querySelectorAll('.new-card-input').forEach(i => i.value = '');
@@ -25,16 +24,16 @@ class CardForm extends Component {
   getImage = (e) => {
     if (e.target.files[0] && validType(e.target.files[0])) {
       reader.readAsDataURL(e.target.files[0]); 
-      reader.onload = this.saveCard;
+      // reader.onload = this.saveCard;
     } 
   }
 
   render() {
     return (
       <form className='new-card-form'>
-        <label htmlFor='my-term-input'>Term:</label>
+        <label htmlFor='my-term-input'>Term<span>*</span>:</label>
         <input type='text' className='new-card-input' id='my-term-input' maxLength='30'></input>
-        <label htmlFor='my-desc-input'>Description:</label>
+        <label htmlFor='my-desc-input'>Description<span>*</span>:</label>
         <input type='textarea' className='new-card-input' id='my-desc-input' maxLength='80'></input>
         <label htmlFor='my-desc-input'>Example:</label>
         <input type='file' className='new-card-input' id='my-example-input' onChange={this.getImage}></input>

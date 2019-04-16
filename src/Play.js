@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Play.scss';
 import CardArea from './CardArea.js';
 
-
 class Play extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +22,10 @@ class Play extends Component {
         <CardArea mode={this.state.mode} 
                   data={this.props.data}
                   myCards={this.props.myCards}
+                  markCardUsed={this.props.markCardUsed}
+                  updateGameCount={this.props.updateGameCount}
+                  updateGuessCount={this.props.updateGuessCount}
+                  checkHighScore={this.props.checkHighScore}
         />
       </>
     )
