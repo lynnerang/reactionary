@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyCards Should match the snapshot 1`] = `
+<Fragment>
+  <h2>
+    My Cards
+  </h2>
+  <div
+    className="instructions"
+  >
+    <p
+      className="top-line"
+    >
+      Add and delete your own custom flash cards below!
+    </p>
+    <p
+      className="notes"
+    >
+      NOTE: These will be included in the 'Guess Mode' and 'Review Mode' games only.
+    </p>
+  </div>
+  <div
+    className="new-card-link"
+  >
+    <button
+      id="new-card-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      + Add New Card
+    </button>
+  </div>
+  <div
+    className="my-card-list"
+  >
+    <MyCardList
+      myCards={
+        Array [
+          Object {
+            "definition": "An application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the app to run. Any interactions don't require a trip to server/page reload.",
+            "example": "./images/example{exampleId}.png",
+            "fakeAnswers": Array [
+              "Webpack",
+              "Responsive Website",
+            ],
+            "id": 1,
+            "term": "Single-page Application",
+          },
+          Object {
+            "definition": "These things take JavaScript code, transform it, and return it as JavaScript code in a different format.",
+            "example": "Babel is a popular example, and is most commonly used for React and transforms ES6 syntax into syntax that older browsers can interpret.",
+            "fakeAnswers": Array [
+              "Bundlers",
+              "Package Managers",
+            ],
+            "id": 2,
+            "term": "Compilers",
+          },
+        ]
+      }
+    />
+  </div>
+</Fragment>
+`;
