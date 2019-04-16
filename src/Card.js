@@ -10,12 +10,8 @@ class Card extends Component {
     }
   }
 
-  showExample = () => {
-    this.setState({showExample: true});
-  }
-
-  closeExample = () => {
-    this.setState({showExample: false});
+  toggleExample = () => {
+    this.setState({showExample: !this.state.showExample});
   }
 
   deleteCard = () => {
@@ -40,7 +36,7 @@ class Card extends Component {
 
     let popup = this.state.showExample && <div className='popup'>
         {example}
-        <i className='fas fa-times popup-close-btn' onClick={this.closeExample}> close</i>
+        <i className='fas fa-times popup-close-btn' onClick={this.toggleExample}> close</i>
       </div>;
  
     let term = this.props.hasTerm ? this.props.cardData.term : 'What am I?';
@@ -58,7 +54,7 @@ class Card extends Component {
           <div className='card-bottom'>
             <h4 className='description-header'>Description: </h4>
             <p className='description'>{this.props.cardData.definition}</p>
-            <p className='example-link' onClick={this.showExample}>(View Example)</p>
+            <p className='example-link' onClick={this.toggleExample}>(View Example)</p>
           </div>
           </article>
         </>

@@ -25,9 +25,7 @@ class Guess extends Component {
   getNextTurn = (input) => {
     this.props.updateGuessCount('add');
     setTimeout(() => { 
-      console.log('oh')
       this.props.getRandomCard();
-      console.log('poop')
       input.value = '';
     }, 2000);
   }
@@ -40,11 +38,10 @@ class Guess extends Component {
 
   showResponse = (text, icon) => {
     const response = document.querySelector('.guess-response');
-    this.setState({errorTxt: text,errorIconClass: icon}, () => {
+    this.setState({errorTxt: text, errorIconClass: icon}, () => {
       response.classList.remove('invisible');
       setTimeout(() => response.classList.add('invisible'), 2000)
     })
-
   }
 
   render() {

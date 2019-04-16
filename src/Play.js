@@ -7,7 +7,7 @@ class Play extends Component {
     super(props);
 
     this.state = {
-      mode: 'Guess'
+      mode: 'Guess' //will use later for multiple modes
     }
   }
 

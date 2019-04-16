@@ -5,22 +5,32 @@ import Home from './Home.js';
 import Play from './Play.js';
 import MyCards from './MyCards.js';
 import Stats from './Stats.js';
-
-const myCards = JSON.parse(localStorage.getItem('my cards')) || [];
-const gameCount = JSON.parse(localStorage.getItem('game count')) || 0;
-const highScore = JSON.parse(localStorage.getItem('high score')) || {totalCards: 0, guesses: 0};
-const guessCount = JSON.parse(localStorage.getItem('guess count')) || 0;
+import Links from './Links.js';
 
 class Main extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      myCards: myCards,
-      gameCount: gameCount,
-      totalGuesses: guessCount,
-      highScore: highScore
+      myCards: [],
+      gameCount: 0,
+      totalGuesses: 0,
+      highScore: {}
     }
+  }
+
+  componentDidMount() {
+    const myCards = JSON.parse(localStorage.getItem('my cards')) || [];
+    const gameCount = JSON.parse(localStorage.getItem('game count')) || 0;
+    const highScore = JSON.parse(localStorage.getItem('high score')) || {totalCards: 0, guesses: 0};
+    const totalGuesses = JSON.parse(localStorage.getItem('guess count')) || 0;
+
+    this.setState({
+      myCards: myCards, 
+      gameCount: gameCount, 
+      highScore: highScore, 
+      totalGuesses: totalGuesses
+    });
   }
 
   updateGameCount = () => {
@@ -53,18 +63,30 @@ class Main extends Component {
     const updatedCards = this.state.myCards;
     updatedCards.push(newCard);
     this.updateMyCards(updatedCards);
+    this.updateStorageRemainingCards(newCard.id, 'add');
   }
 
   deleteMyCard = cardId => {
     const updatedCards = this.state.myCards; 
-    const match = updatedCards.find(card => card.id === cardId);
-    updatedCards.splice(updatedCards.indexOf(match), 1);
+    const deletedCard = updatedCards.find(card => card.id === cardId);
+    updatedCards.splice(updatedCards.indexOf(deletedCard), 1);
     this.updateMyCards(updatedCards);
+    this.updateStorageRemainingCards(deletedCard.id);
   }
 
   updateMyCards = cards => {
     this.setState({myCards: cards});
     localStorage.setItem('my cards', JSON.stringify(cards))
+  }
+
+  updateStorageRemainingCards = (id, option) => {
+    let remaining = JSON.parse(localStorage.getItem('remaining cards')) || [];
+    if (option === 'add') {
+      remaining.push(id);
+    } else if (remaining.includes(id)) {
+      remaining.splice(remaining.indexOf(id), 1);
+    }
+    localStorage.setItem('remaining cards', JSON.stringify(remaining));
   }
 
   markCardUsed = cardId => {
@@ -75,9 +97,6 @@ class Main extends Component {
   }
 
   render() {
-    
-    // console.log(this.state.totalGuesses) 
-    // console.log(this.state.highScore) 
     return (
         <main>
           <Switch>
@@ -103,6 +122,7 @@ class Main extends Component {
                      highScore={this.state.highScore}
               />
             )}/>
+            <Route path='/links' render={(props) => (<Links />)}/>
           </Switch>
         </main>
     )
