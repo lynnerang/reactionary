@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Guess Should match the snapshot 1`] = `
+<article
+  className="guess-area"
+>
+  <label
+    htmlFor="term-input"
+  >
+    Enter your guess:
+  </label>
+  <div
+    className="guess-entry"
+  >
+    <input
+      autoComplete="off"
+      className="single-guess-input"
+      id="term-input"
+    />
+    <button
+      className="single-guess-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-arrow-right"
+      />
+    </button>
+  </div>
+  <div
+    className="guess-response correct-guess-response"
+  >
+    <i
+      className="fas "
+    />
+    <p />
+  </div>
+</article>
+`;

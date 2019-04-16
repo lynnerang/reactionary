@@ -3,15 +3,13 @@ import logo from './logo.svg';
 import './App.scss';
 import Main from './Main.js';
 import Navigation from './Navigation.js';
-import reactTerms from './lynnerang.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      data2: reactTerms,
-      data: {},
+      data: [],
       loading: true
     }
   }
@@ -25,7 +23,7 @@ class App extends Component {
 
   render() {
     let page;
-    
+
     if (this.state.loading) {
       page = 'loading...'
     } else {

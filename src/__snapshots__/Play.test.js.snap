@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Play Should match the snapshot 1`] = `
+<Fragment>
+  <h2>
+    Play
+  </h2>
+  <h3>
+    Guess
+     Mode
+  </h3>
+  <div
+    className="instructions"
+  >
+    <p>
+      Read the description below, and enter the term you think this describes. View the example if you'd like some extra help!
+    </p>
+  </div>
+  <CardArea
+    mode="Guess"
+  />
+</Fragment>
+`;

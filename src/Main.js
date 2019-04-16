@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './Main.scss';
 import Home from './Home.js';
 import Play from './Play.js';
@@ -15,7 +15,7 @@ class Main extends Component {
       myCards: [],
       gameCount: 0,
       totalGuesses: 0,
-      highScore: {}
+      highScore: {totalCards: 0, guesses: 0}
     }
   }
 
@@ -99,31 +99,31 @@ class Main extends Component {
   render() {
     return (
         <main>
-          <Switch>
-            <Route path='/' exact render={(props) => (<Home />)}/>
-            <Route path='/play' render={(props) => (
-              <Play data={this.props.data} 
-                    myCards={this.state.myCards}
-                    updateGameCount={this.updateGameCount}
-                    markCardUsed={this.markCardUsed}
-                    checkHighScore={this.checkHighScore}
-                    updateGuessCount={this.updateGuessCount}
-              />
-            )}/>
-            <Route path='/mycards' render={(props) => (
-              <MyCards data={this.props.data}
-                       myCards={this.state.myCards}
-                       saveNewCard={this.saveNewCard} 
-                       deleteMyCard={this.deleteMyCard}
-              />
-            )}/>
-            <Route path='/stats' render={(props) => (
-              <Stats gameCount={this.state.gameCount}
-                     highScore={this.state.highScore}
-              />
-            )}/>
-            <Route path='/links' render={(props) => (<Links />)}/>
-          </Switch>
+            <Switch>
+              <Route path='/' exact render={(props) => (<Home />)}/>
+              <Route path='/play' render={(props) => (
+                <Play data={this.props.data} 
+                      myCards={this.state.myCards}
+                      updateGameCount={this.updateGameCount}
+                      markCardUsed={this.markCardUsed}
+                      checkHighScore={this.checkHighScore}
+                      updateGuessCount={this.updateGuessCount}
+                />
+              )}/>
+              <Route path='/mycards' render={(props) => (
+                <MyCards data={this.props.data}
+                        myCards={this.state.myCards}
+                        saveNewCard={this.saveNewCard} 
+                        deleteMyCard={this.deleteMyCard}
+                />
+              )}/>
+              <Route path='/stats' render={(props) => (
+                <Stats gameCount={this.state.gameCount}
+                      highScore={this.state.highScore}
+                />
+              )}/>
+              <Route path='/links' render={(props) => (<Links />)}/>
+            </Switch>
         </main>
     )
   }

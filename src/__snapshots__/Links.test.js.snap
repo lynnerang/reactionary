@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Links Should match the snapshot 1`] = `
+<Fragment>
+  <h2>
+    Links
+  </h2>
+  <h3
+    className="resources-heading"
+  >
+    React Docs
+  </h3>
+  <p>
+    React has great documentation online with up-to-date information on everything within its framework!
+  </p>
+  <a
+    className="resources-link"
+    href="https://reactjs.org/docs/getting-started.html"
+  >
+    https://reactjs.org/docs/getting-started.html
+  </a>
+</Fragment>
+`;
