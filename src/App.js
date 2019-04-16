@@ -10,12 +10,24 @@ class App extends Component {
     super(props);
     
     this.state = {
-      data: reactTerms
+      data: reactTerms,
+      data2: {}
     }
   }
 
+  componentDidMount() {
+    fetch('https://fe-apps.herokuapp.com/api/v1/memoize/1901/lynnerang/reactterms')
+    .then(data => data.json())
+    .then(data => this.setState({ data2: data.reactTerms })) 
+    .catch(error => console.error(error))
+  }
+
   render() {
-    return (
+    let page;
+    if (!this.state.data2.length) {
+      page = 'loading...'
+    } else {
+    page = (
       <div className='App'>
         <header className='App-header'>
           <div className='App-header-left'>
@@ -31,6 +43,9 @@ class App extends Component {
       </div>
     );
   }
+
+  return page;
+}
 }
 
 export default App;

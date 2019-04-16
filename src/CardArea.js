@@ -6,7 +6,6 @@ import Guess from './Guess.js';
 const storage = JSON.parse(localStorage.getItem('remaining cards')) || [];
 
 
-
 class CardArea extends Component {
   constructor(props) {
     super(props);
@@ -27,34 +26,38 @@ class CardArea extends Component {
 
   getCards = () => {
     let cardList = this.props.data.concat(this.props.myCards);
-    this.setState({cards: cardList}, () => {
-      !this.state.remainingCards.length ? this.updateRemainingCards(cardList)
-      : this.checkRemainingCards();
-      this.getRandomCard();
-    });
+    this.setState({cards: cardList}, () => this.getRandomCard());
   }
 
-  checkRemainingCards = () => {
+  checkRemainingCards = (cardList) => {
     let remaining = this.state.remainingCards;
-    this.state.cards.forEach(card => {
+
+    cardList.forEach(card => {
       if (card.new) {
         remaining.push(card);
         this.props.markCardUsed(card.id);
       }
     });
-
-    const allCardIds = this.state.cards.map(card => card.id);
-    remaining.forEach(card => {
-      if (!allCardIds.includes(card.id)) {
-        const index = remaining.findIndex(i => i.id === card.id);
-        remaining.splice(index, 1);
-      }
-    })
-
+    // console.log(remaining)
+    // const allCardIds = this.state.cards.map(card => card.id);
+    // console.log(this.state.cards.length, allCardIds)
+    // remaining.forEach(card => {
+    //   console.log(card)
+    //   if (!allCardIds.includes(card.id)) {
+    //     const index = remaining.findIndex(i => i.id === card.id);
+    //     remaining.splice(index, 1);
+    //   }
+    // });
     this.updateRemainingCards(remaining);
   }
 
   getRandomCard = () => {
+    if (!this.state.remainingCards.length) {
+      this.updateRemainingCards(this.state.cards);
+    } else {
+      this.checkRemainingCards(this.state.cards); //took from getcards
+    }
+
     const randomIndex = Math.floor(Math.random() * this.state.remainingCards.length);
     const randomCard = this.state.remainingCards[randomIndex];
     this.setState({randomCard: randomCard, randomIndex: randomIndex});
@@ -62,14 +65,24 @@ class CardArea extends Component {
 
   removeCard = () => {
     let updatedCards = [...this.state.remainingCards];
-
-    if (updatedCards.length > 1) {
-      updatedCards.splice(this.state.randomIndex, 1);
-    } else {
-      updatedCards = [...this.state.cards];
-      this.endGame();
-      this.setState({showDialog: true});
+    updatedCards.splice(this.state.randomIndex, 1);
+    if (updatedCards.length === 0) {
+      setTimeout(() => {
+        
+        // updatedCards = [...this.state.cards]; //necessary?
+        this.endGame();
+        
+      }, 2000);
     }
+    // if (updatedCards.length > 1) {
+    //   updatedCards.splice(this.state.randomIndex, 1);
+    // } else {
+    //   setTimeout(() => {
+    //     updatedCards = [...this.state.cards]; //necessary?
+    //     this.endGame();
+    //     this.setState({showDialog: true});
+    //   }, 2000);
+    // }
     this.updateRemainingCards(updatedCards);
   }
 
@@ -79,14 +92,17 @@ class CardArea extends Component {
   }
 
   resetGame = () => {
-    this.updateRemainingCards([]);
+    // this.updateRemainingCards([]);
     this.props.updateGuessCount(0);
+    // this.getCards();
   }
 
   endGame = () => {
-    this.props.updateGameCount(this.state.guessCount);
-    this.props.checkHighScore(this.state.guessCount, this.state.cards.length);
-    this.resetGame();
+    this.props.updateGameCount();
+    this.props.checkHighScore(this.state.cards.length);
+    this.props.updateGuessCount(0);
+    this.setState({showDialog: true});
+    this.getCards();
   }
 
   closeDialog = () => {
@@ -96,8 +112,12 @@ class CardArea extends Component {
   render() {
     const totalCards = this.state.cards.length;
     const cardsLeft = this.state.remainingCards.length;
-    // console.log(this.state.guessCount);
-    const percent = (totalCards - cardsLeft) / totalCards * 100;
+    
+    let percent = (totalCards - cardsLeft) / totalCards * 100;
+    if (percent === 100) {
+      percent = 99.99;
+    }
+
     const style = {animationDelay: `-${percent}s`};
 
     const guess = !this.state.hasTerm &&

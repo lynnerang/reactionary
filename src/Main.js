@@ -25,7 +25,7 @@ class Main extends Component {
 
   updateGameCount = () => {
     const gameCount = this.state.gameCount + 1;
-    this.setState({gameCount: gameCount, totalGuesses: 0});
+    this.setState({gameCount: gameCount});
     localStorage.setItem('game count', JSON.stringify(gameCount));
   }
 
@@ -35,7 +35,8 @@ class Main extends Component {
     localStorage.setItem('guess count', JSON.stringify(total));
   }
 
-  checkHighScore = (numGuesses, numCards) => {
+  checkHighScore = (numCards) => {
+    const numGuesses = this.state.totalGuesses;
     const highDiff =  this.state.highScore.guesses / this.state.highScore.totalCards;
     const currentDiff = numGuesses / numCards;
 
@@ -74,7 +75,9 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.state.totalGuesses) 
+    
+    // console.log(this.state.totalGuesses) 
+    // console.log(this.state.highScore) 
     return (
         <main>
           <Switch>
