@@ -1,11 +1,12 @@
 const reactTerms = [
+  // {
+  //   "id": 1,
+  //   "term": "Single-page Application",
+  //   "fakeAnswers": ["Webpack", "Responsive Website"],
+  //   "definition": "An application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the app to run. Any interactions don't require a trip to server/page reload.",
+  //   "example": "./images/example{exampleId}.png"
+  // }, 
   {
-    "id": 1,
-    "term": "Single-page Application",
-    "fakeAnswers": ["Webpack", "Responsive Website"],
-    "definition": "An application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the app to run. Any interactions don't require a trip to server/page reload.",
-    "example": "./images/example{exampleId}.png"
-  }, {
     "id": 2,
     "term": "Compilers",
     "fakeAnswers": ["Bundlers", "Package Managers"],
@@ -17,14 +18,14 @@ const reactTerms = [
     "fakeAnswers": ["Compilers", "Package Managers"],
     "definition": "These take JavaScript and CSS code written as separate modules (often hundreds of them), and combine them together into a few files better optimized for browsers.",
     "example": "Webpack and Browserify are two examples of this that are commonly used in React applications."
-  }, {
-    "id": 4,
-    "term": "Package Managers",
-    "fakeAnswers": ["Bundlers", "Compilers"],
-    "definition": "These are tools that allow you to manage dependencies in your project.",
-    "example": "npm and Yarn are two of these that are commonly used in React applications."
   }
   // , {
+  //   "id": 4,
+  //   "term": "Package Managers",
+  //   "fakeAnswers": ["Bundlers", "Compilers"],
+  //   "definition": "These are tools that allow you to manage dependencies in your project.",
+  //   "example": "npm and Yarn are two of these that are commonly used in React applications."
+  // }, {
   //   "id": 5,
   //   "term": "CDN",
   //   "fakeAnswers": ["Internet", "Http"],

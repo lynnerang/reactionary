@@ -23,9 +23,13 @@ class Guess extends Component {
   }
 
   getNextTurn = (input) => {
-    input.value = '';
     this.props.updateGuessCount('add');
-    setTimeout(() => { this.props.getRandomCard() }, 2000);
+    setTimeout(() => { 
+      console.log('oh')
+      this.props.getRandomCard();
+      console.log('poop')
+      input.value = '';
+    }, 2000);
   }
 
   calcSimilarity = (input) => {
