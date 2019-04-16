@@ -32,8 +32,7 @@ class MyCards extends Component {
         <h2>My Cards</h2>
         <div className='instructions'>
           <p className='top-line'>Add and delete your own custom flash cards below!</p>
-          <p className='notes'>- P.S. These will be included in the 'Guess Mode' and 'Review Mode' games only.</p>
-          <p className='notes'>- P.P.S. These won't be included until you reset or finish a game in progress</p>
+          <p className='notes'>NOTE: These will be included in the 'Guess Mode' and 'Review Mode' games only.</p>
         </div>
         <div className='new-card-link'>
           <button type='button' id='new-card-btn' onClick={this.toggleForm}>+ Add New Card</button>

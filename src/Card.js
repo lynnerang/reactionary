@@ -18,10 +18,14 @@ class Card extends Component {
     this.setState({showExample: false});
   }
 
+  deleteCard = () => {
+    const id = this.props.cardData.id;
+    this.props.deleteMyCard(id);
+  }
+
   render() {
     const substring = this.props.cardData.example ? this.props.cardData.example.substring(0,3) : null;
     let example;
-    console.log(substring);
 
     if (!this.props.cardData.example) {
       example = <div><p>No example for this card</p></div>
@@ -35,14 +39,13 @@ class Card extends Component {
     } 
 
     let popup = this.state.showExample && <div className='popup'>
-        {/* <img className='example-img' src={url} alt='visual example' /> */}
         {example}
         <i className='fas fa-times popup-close-btn' onClick={this.closeExample}> close</i>
       </div>;
  
     let term = this.props.hasTerm ? this.props.cardData.term : 'What am I?';
     
-    const deleteBtn = this.props.canDelete && <i className='fa fa-trash' onClick={this.props.deleteMyCard}></i>
+    const deleteBtn = this.props.canDelete && <i className='fa fa-trash' onClick={this.deleteCard}></i>
 
     return (
       <>
