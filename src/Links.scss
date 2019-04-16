@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.resources-link {
+  margin: 20px 0px;
+  color: $secondary-color;
+  display: block;
+  
+  &:hover {
+    color: $blue;
+  }
+}
+
+.resources-heading {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
