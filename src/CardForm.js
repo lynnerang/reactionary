@@ -15,7 +15,6 @@ class CardForm extends Component {
   saveCard = (e) => {
     const term = document.querySelector('#my-term-input').value;
     const desc = document.querySelector('#my-desc-input').value;
-    // const file = document.querySelector('#my-example-input').value;
     const file = this.state.imageUrl;
 
     this.props.saveNewCard(term, desc, file);
@@ -42,7 +41,7 @@ class CardForm extends Component {
         <label htmlFor='my-term-input'>Term<span>*</span>:</label>
         <input type='text' className='new-card-input' id='my-term-input' maxLength='30'></input>
         <label htmlFor='my-desc-input'>Description<span>*</span>:</label>
-        <textarea className='new-card-input' id='my-desc-input' maxLength='80'></textarea>
+        <textarea resize='none' className='new-card-input' id='my-desc-input' maxLength='80'></textarea>
         <label htmlFor='my-desc-input'>Example:</label>
         <input type='file' className='new-card-input' id='my-example-input' onChange={this.onFileChange}></input>
         <div className='new-card-form-btns'>

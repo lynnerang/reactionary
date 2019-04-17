@@ -14,10 +14,24 @@ function Stats(props) {
       </div>
       <div className='stat'>
         <div><i className='fas fa-trophy'></i></div>
+        <div>
+          <h3 className='stats-heading'>Guess Mode High Score</h3>
+          <p>Your best Guess Mode game was answering {props.highScore.totalCards} questions with {props.highScore.guesses} guesses!</p>
+        </div>
+      </div>
+      <div className='stat'>
+        <div><i className='fas fa-trophy'></i></div>
+        <div>
+          <h3 className='stats-heading'>Choice Mode High Score</h3>
+          <p>Your best Choice mode game was answering {props.highScore.totalCards} questions with {props.highScore.guesses} guesses!</p>
+        </div>
+      </div>
+      <div className='stat'>
+        <div><i className='fas fa-stream'></i></div>
         <div></div>
         <div>
-          <h3 className='stats-heading'>High Score</h3>
-          <p>Your best game was answering {props.highScore.totalCards} questions with {props.highScore.guesses} guesses!</p>
+          <h3 className='stats-heading'>Most Cards Answered</h3>
+          <p>The most cards you've answered in a single game is 0!</p>
         </div>
       </div>
     </>
