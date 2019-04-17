@@ -28,7 +28,6 @@ function Stats(props) {
       </div>
       <div className='stat'>
         <div><i className='fas fa-stream'></i></div>
-        <div></div>
         <div>
           <h3 className='stats-heading'>Most Cards Answered</h3>
           <p>The most cards you've answered in a single game is 0!</p>
