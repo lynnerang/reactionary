@@ -3,7 +3,7 @@
 .card {
   position: relative;
   height: 380px;
-  width: 335px;
+  min-width: 310px;
   max-width: 335px;
   background: rgb(236, 245, 244);
   border-radius: 10px;

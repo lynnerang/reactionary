@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './CardForm.scss';
 
-const reader = new FileReader();
 const validType = file => (/\.(jpe?g|png|gif)$/i.test(file.name));
 
 class CardForm extends Component {
@@ -22,9 +21,10 @@ class CardForm extends Component {
   }
 
   getImage = (e) => {
+    const reader = new FileReader();
     if (e.target.files[0] && validType(e.target.files[0])) {
       reader.readAsDataURL(e.target.files[0]); 
-      // reader.onload = this.saveCard;
+      // reader.onload = function() {document.querySelector('#my-example-input').value = e.target.result};
     } 
   }
 
@@ -34,7 +34,7 @@ class CardForm extends Component {
         <label htmlFor='my-term-input'>Term<span>*</span>:</label>
         <input type='text' className='new-card-input' id='my-term-input' maxLength='30'></input>
         <label htmlFor='my-desc-input'>Description<span>*</span>:</label>
-        <input type='textarea' className='new-card-input' id='my-desc-input' maxLength='80'></input>
+        <textarea className='new-card-input' id='my-desc-input' maxLength='80'></textarea>
         <label htmlFor='my-desc-input'>Example:</label>
         <input type='file' className='new-card-input' id='my-example-input' onChange={this.getImage}></input>
         <div className='new-card-form-btns'>

@@ -43,7 +43,7 @@ main {
 
   .App-header-left {
     height: 100%;
-    width: 232px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -58,6 +58,7 @@ main {
 
     h1 {
       margin-left: -5px;
+      padding-right: 20px;
       color: $blue;
       font-size: 30px;
       font-family: 'Pathway Gothic One', sans-serif;
@@ -75,11 +76,46 @@ main {
   }
 }
 
+.hamburger {
+  color: white;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  display: none;
+
+  :hover {
+    color: $blue;
+    cursor: pointer;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  aside {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    z-index: 2;
+  }
+
+  nav {
+    padding-bottom: 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .show {
+    display: block;
   }
 }

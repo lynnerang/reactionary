@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './Main.scss';
 import Home from './Home.js';
 import Play from './Play.js';
@@ -61,7 +61,7 @@ class Main extends Component {
   saveNewCard = (term, desc, file) => {
     const newCard = {id: Date.now(), term: term, definition: desc, example: file, new: true};
     const updatedCards = this.state.myCards;
-    updatedCards.push(newCard);
+    updatedCards.unshift(newCard);
     this.updateMyCards(updatedCards);
     this.updateStorageRemainingCards(newCard.id, 'add');
   }

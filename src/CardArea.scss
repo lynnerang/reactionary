@@ -40,8 +40,9 @@
 }
 
 .progress-area {
-  margin-top: 40px;
-  position: relative;
+  bottom: 20px;
+  right: 40px;
+  position: absolute;
   align-self: flex-end;
   display: flex;
   flex-direction: column;
@@ -122,4 +123,29 @@
   }
 }
 
+
+
+@media only screen and (max-width:725px) {
+  .card-area {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .guess-area,
+  .card,
+  .progress.area {
+    display: block;
+    margin: 30px 0!important;
+  }
+
+  .progress-area {
+    position: relative;
+    width: 100%;
+    bottom: 10px;
+    margin: auto;
+    margin-left: 35px;
+  }
+}
 

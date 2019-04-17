@@ -42,6 +42,10 @@
       background: $blue;
     }
 
+    &:disabled {
+      background: lightgray;
+    }
+
     .fa-arrow-right {
       color: white;
       font-size: 20px;
@@ -76,4 +80,10 @@
 
 .invisible {
   visibility: hidden;
+}
+
+@media only screen and (max-width:725px) {
+  .guess-response {
+    width: 250px;
+  }
 }
