@@ -21,6 +21,10 @@ class App extends Component {
     .catch(error => console.error(error))
   }
 
+  toggleNav = () => {
+    document.querySelector('aside').classList.toggle('show');
+  }
+
   render() {
     let page;
 
@@ -29,6 +33,7 @@ class App extends Component {
     } else {
       page = (
         <div className='App'>
+          <div className='hamburger' onClick={this.toggleNav}><i className='fas fa-bars'></i></div>
           <header className='App-header'>
             <div className='App-header-left'>
               <img className='App-logo' src={logo} alt='site logo'/>

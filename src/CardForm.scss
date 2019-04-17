@@ -17,7 +17,8 @@
     }
   }
 
-  input {
+  input,
+  textarea {
     width: 290px;
     margin-bottom: 25px;
     margin-top: 5px;
@@ -30,6 +31,9 @@
 
   #my-desc-input {
     height: 80px;
+    border-color: rgb(196, 196, 196);
+    border-top: 2px solid rgb(148, 148, 148);
+    border-left: 2px solid rgb(148, 148, 148);
   }
 
   #my-example-input {

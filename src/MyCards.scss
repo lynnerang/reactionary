@@ -44,3 +44,13 @@
   font-size: 17px;
 }
 
+@media only screen and (max-width: 775px) {
+
+  .my-card-list {
+    justify-content: center;
+  }
+
+  .home-options {
+    padding-right: 0;
+  }
+}
