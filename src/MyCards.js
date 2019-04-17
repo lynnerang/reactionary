@@ -39,7 +39,9 @@ class MyCards extends Component {
         </div>
         <div className='my-card-list'>
           {form}
-          <MyCardList myCards={this.props.myCards} 
+          <MyCardList data={this.props.data}
+                      myCards={this.props.myCards} 
+                      canDelete={true}
                       deleteMyCard={this.props.deleteMyCard} 
           />
         </div>

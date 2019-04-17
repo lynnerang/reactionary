@@ -7,33 +7,41 @@ class Guess extends Component {
 
     this.state = {
       errorTxt: '',
-      errorIconClass: ''
+      errorIconClass: '',
+      choices: []
     }
   }
 
   checkAnswer = (e) => {
-    const input = e.target.closest('.guess-entry').querySelector('input');
-    if (this.calcSimilarity(input) >= .72) {
+    let value = e.target.type === 'button' ? e.target.id
+    : e.target.closest('.guess-entry').querySelector('input').value;
+
+    let correct = e.target.type === 'button' ? value === this.props.answer 
+    : this.isSimilarEnough(value);
+
+    if (correct) {
       this.showResponse('That is correct, nice job!', 'fa-check');
       this.props.removeCard();
     } else {
       this.showResponse('Not quite!  We\'ll try this one again later.', 'fa-times');
     }
-    this.getNextTurn(input);
+    this.getNextTurn(e.target);
   }
 
-  getNextTurn = (input) => {
-    this.props.updateGuessCount('add');
+  getNextTurn = () => {
     setTimeout(() => { 
       this.props.getRandomCard();
-      input.value = '';
+      const textInput = document.querySelector('#term-input');
+      console.log(textInput)
+      if (textInput) textInput.value = '';
+      this.props.updateGuessCount('add');
     }, 2000);
   }
 
-  calcSimilarity = (input) => {
+  isSimilarEnough = (value) => {
     const check = require('string-similarity');
-    const similarity = check.compareTwoStrings(input.value.toLowerCase(), this.props.answer.toLowerCase());
-    return similarity;
+    const similarity = check.compareTwoStrings(value.toLowerCase(), this.props.answer.toLowerCase());
+    return similarity >= .72;
   }
 
   showResponse = (text, icon) => {
@@ -52,10 +60,12 @@ class Guess extends Component {
 
   render() {
     let iconClass = `fas ${this.state.errorIconClass}`;
+    let guessLayout;
+    console.log(this.props.choices);
+    console.log(this.props.answer)
 
-    return (
-      <article className='guess-area'>
-        <label htmlFor='term-input'>Enter your guess:</label>
+    this.props.mode === 'Guess' ? guessLayout =  (
+      <><label htmlFor='term-input'>Enter your guess:</label>
         <div className='guess-entry'>
           <input id='term-input' className='single-guess-input' autoComplete='off' onKeyPress={this.onGuessKeyPress}></input>
           <button type='button' className='single-guess-btn' onClick={this.checkAnswer}><i className='fas fa-arrow-right'></i></button>
@@ -63,6 +73,22 @@ class Guess extends Component {
         <div className='guess-response correct-guess-response'>
           <i className={iconClass}></i><p>{this.state.errorTxt}</p>
         </div>
+      </> )
+    : guessLayout = (
+      <><label>Choose a term:</label>
+        <div className='guess-choices'>
+          <button type='button' className='choice' id={this.props.choices[0]} onClick={this.checkAnswer}>{this.props.choices[0]}</button>
+          <button type='button' className='choice' id={this.props.choices[1]} onClick={this.checkAnswer}>{this.props.choices[1]}</button>
+          <button type='button' className='choice' id={this.props.choices[2]} onClick={this.checkAnswer}>{this.props.answer}</button>
+        </div>
+        <div className='guess-response correct-guess-response'>
+          <i className={iconClass}></i><p>{this.state.errorTxt}</p>
+        </div>
+      </> )
+
+    return (
+      <article className='guess-area'>
+        {guessLayout}
       </article>
     )
   }

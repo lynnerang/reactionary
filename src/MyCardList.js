@@ -3,13 +3,17 @@ import './MyCardList.scss';
 import Card from './Card.js';
 
 function MyCardList(props) {
+  let list;
+  props.mode === 'All' ? list = props.data.concat(props.myCards) 
+  : list = props.myCards;
+  
     return (
       <>
         {
-          props.myCards && props.myCards.map(card => {
+          list.map(card => {
             return <Card key={card.id}
                          hasTerm={true} 
-                         canDelete={true} 
+                         canDelete={props.canDelete} 
                          cardData={card}
                          deleteMyCard={props.deleteMyCard}
                    />

@@ -78,6 +78,27 @@
   }
 }
 
+.guess-choices {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice {
+  padding: 15px 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background: $secondary-color;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  width: 250px;
+
+  &:hover {
+    background: $blue;
+  }
+}
+
 .invisible {
   visibility: hidden;
 }
