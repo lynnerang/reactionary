@@ -12,6 +12,7 @@ class CardArea extends Component {
       cards: [],
       remainingCardIds: [],
       randomCard: {},
+      choices: ['one', 'two', 'three'],
       hasTerm: this.props.mode !== 'Guess' && this.props.mode !== 'Choice',
       showDialog: false
     }
@@ -22,10 +23,13 @@ class CardArea extends Component {
   }
 
   getCards = () => {
-    const total = this.props.data.concat(this.props.myCards);
+    const appCards = this.props.data;
+    const myCards = this.props.myCards || [];
+    const combo = appCards.concat(myCards);
+    const ids = combo.map(card => card.id);
     const remaining = JSON.parse(localStorage.getItem('remaining cards')) 
-    || total.map(i => i.id);
-    this.setState({cards: total, remainingCardIds: remaining}, () => {
+    || ids;
+    this.setState({cards: combo, remainingCardIds: remaining}, () => {
       this.getRandomCard();
     })
   }
@@ -33,13 +37,14 @@ class CardArea extends Component {
   getRandomCard = () => {
     const randomId = this.state.remainingCardIds[Math.floor(Math.random() * this.state.remainingCardIds.length)];
     const randomCard = this.state.cards.find(card => card.id === randomId);
-    this.setState({randomCard: randomCard});
+    console.log(randomCard)
+    this.setState({randomCard: randomCard, choices: randomCard.fakeAnswers.concat(randomCard.term)});
   }
 
   removeCard = () => {
     let updatedIds = [...this.state.remainingCardIds];
     updatedIds.splice(updatedIds.indexOf(this.state.randomCard.id), 1);
-    if (updatedIds.length === 0) {
+    if (!updatedIds.length) {
       setTimeout(() => this.endGame(), 2000);
     }
     this.updateRemainingCardIds(updatedIds);
@@ -67,25 +72,38 @@ class CardArea extends Component {
     this.setState({showDialog: false});
   }
 
+  shuffle = array => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+
   render() {
+    console.log(this.state.remainingCardIds)
     const totalCards = this.state.cards.length;
     const cardsLeft = this.state.remainingCardIds.length;
-    
+    let guess;
     let percent = (totalCards - cardsLeft) / totalCards * 100;
     if (percent === 100) {
       percent = 99.99;
     }
-
     const style = {animationDelay: `-${percent}s`};
 
-    const guess = !this.state.hasTerm &&
+      guess = 
        <Guess mode={this.props.mode} 
              answer={this.state.randomCard.term} 
+             choices={this.state.choices}
              getRandomCard={this.getRandomCard} 
              removeCard={this.removeCard}
              updateGuessCount={this.props.updateGuessCount}
-      /> 
-    
+       /> 
+
     const dialog = this.state.showDialog && 
       <div className='popup'>
         <div className='round-end-dialog' onBlur={this.closeDialog}>
@@ -94,16 +112,17 @@ class CardArea extends Component {
           <button type='button' onClick={this.closeDialog}>OK</button>
         </div>
       </div>;
-    
+
+      const card = this.state.randomCard && 
+        <Card hasTerm={this.state.hasTerm} 
+              canDelete={false} 
+              cardData={this.state.randomCard}
+        />
 
     return (
       <section className='card-area'>
         {dialog}
-        <Card hasTerm={this.state.hasTerm} 
-              canDelete={false} 
-              cardData={this.state.randomCard}
-              removeCardFromRemaining={this.removeCardFromRemaining}
-        />
+        {card}
         {guess}
         <article className='progress-area'>
           <p><span>{totalCards - cardsLeft}</span> of <span>{totalCards}</span></p>
