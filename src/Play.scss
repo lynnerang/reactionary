@@ -27,3 +27,15 @@
     border-color: $blue;
   }
 }
+
+@media only screen and (max-width: 1140px) {
+  .mode-options {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mode-options {
+    padding-right: 0;
+  }
+}
