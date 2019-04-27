@@ -12,9 +12,9 @@ class Guess extends Component {
   }
 
   checkAnswer = (e) => {
+    document.querySelectorAll('.guess-input').forEach(btn => btn.disabled = true);
     let value = e.target.type === 'button' ? e.target.id
     : e.target.closest('.guess-entry').querySelector('input').value;
-
     let correct = e.target.type === 'button' ? value === this.props.answer 
     : this.isSimilarEnough(value);
 
@@ -33,6 +33,7 @@ class Guess extends Component {
       const textInput = document.querySelector('#term-input');
       if (textInput) textInput.value = '';
       this.props.updateGuessCount(this.props.mode, 'add');
+      document.querySelectorAll('.guess-input').forEach(btn => btn.disabled = false);
     }, 2000);
   }
 
@@ -63,8 +64,8 @@ class Guess extends Component {
     this.props.mode === 'guess' ? guessLayout =  (
       <><label htmlFor='term-input'>Enter your guess:</label>
         <div className='guess-entry'>
-          <input id='term-input' className='single-guess-input' autoComplete='off' onKeyPress={this.onGuessKeyPress}></input>
-          <button type='button' className='single-guess-btn' onClick={this.checkAnswer}><i className='fas fa-arrow-right'></i></button>
+          <input id='term-input' className='guess-input single-guess-input' autoComplete='off' onKeyPress={this.onGuessKeyPress}></input>
+          <button type='button' className='guess-input single-guess-btn' onClick={this.checkAnswer}><i className='fas fa-arrow-right'></i></button>
         </div>
         <div className='guess-response correct-guess-response'>
           <i className={iconClass}></i><p>{this.state.errorTxt}</p>
@@ -73,9 +74,9 @@ class Guess extends Component {
     : guessLayout = (
       <><label>Choose a term:</label>
         <div className='guess-choices'>
-          <button type='button' className='choice' id={this.props.choices[0]} onClick={this.checkAnswer}>{this.props.choices[0]}</button>
-          <button type='button' className='choice' id={this.props.choices[1]} onClick={this.checkAnswer}>{this.props.choices[1]}</button>
-          <button type='button' className='choice' id={this.props.choices[2]} onClick={this.checkAnswer}>{this.props.choices[2]}</button>
+          <button type='button' className='guess-input choice' id={this.props.choices[0]} onClick={this.checkAnswer}>{this.props.choices[0]}</button>
+          <button type='button' className='guess-input choice' id={this.props.choices[1]} onClick={this.checkAnswer}>{this.props.choices[1]}</button>
+          <button type='button' className='guess-input choice' id={this.props.choices[2]} onClick={this.checkAnswer}>{this.props.choices[2]}</button>
         </div>
         <div className='guess-response correct-guess-response'>
           <i className={iconClass}></i><p>{this.state.errorTxt}</p>

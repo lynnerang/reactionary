@@ -61,7 +61,6 @@ class CardArea extends Component {
   }
 
   endGame = () => {
-    //build out for both, passing mode
     this.props.updateGameCount();
     this.props.checkHighScore(this.props.mode, this.state.cards.length);
     this.setState({showDialog: true});
