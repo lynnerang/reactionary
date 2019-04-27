@@ -1,0 +1,121 @@
+@import './reset.scss';
+@import './variables.scss';
+@import './CardArea.scss';
+@import './Guess.scss';
+@import './Card.scss';
+@import './Navigation.scss';
+@import './MyCards.scss';
+@import './MyCardList.scss';
+@import './CardForm.scss';
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Josefin sans', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+}
+
+main {
+  padding: 30px 35px 0px 35px;
+  width: 100%;
+  min-height: calc(100vh - 70px);
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+}
+
+.App-content {
+  display: flex;
+}
+
+.App-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+
+  .App-header-left {
+    height: 100%;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: $primary-color;
+
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+      height: 40vmin;
+      pointer-events: none;
+      height: 50px;
+    }
+
+    h1 {
+      margin-left: -5px;
+      padding-right: 20px;
+      color: $blue;
+      font-size: 30px;
+      font-family: 'Pathway Gothic One', sans-serif;
+
+      span {
+        color: #d1f3fc;
+      }
+    }
+  }
+
+  .App-header-right {
+    height: 100%;
+    width: calc(100vw-200px);
+    background-color: $secondary-color;
+  }
+}
+
+.hamburger {
+  color: white;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  display: none;
+
+  :hover {
+    color: $blue;
+    cursor: pointer;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  aside {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    z-index: 2;
+  }
+
+  nav {
+    padding-bottom: 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .show {
+    display: block;
+  }
+}

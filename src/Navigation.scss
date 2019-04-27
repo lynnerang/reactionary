@@ -1,0 +1,46 @@
+@import './variables.scss';
+
+.App-navigation {
+  background: $dark-gray;
+}
+
+.App-navigation {
+  height: 100%;
+  width: 200px;
+  padding-top: 20px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.nav-link { 
+  text-decoration: none;
+  color: white;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 25px;
+  border-left: 3px solid $dark-gray;
+  cursor: pointer;
+
+  .fas, .far, .fas {
+    width: 20px;
+    font-size: 14px;
+    padding-right: 10px;
+  }
+
+  &:hover {
+    color: $blue;
+    border-left: 3px solid $blue;
+    background: rgba(255, 255, 255, 0.262);
+  }
+}
+
+.active {
+  color: $secondary-color!important;
+  border-left: 3px solid $secondary-color;
+  background: rgba(225, 225, 225, 0.16);
+} 
+

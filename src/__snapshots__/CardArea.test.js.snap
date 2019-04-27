@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardArea Should match the snapshot 1`] = `
+<section
+  className="card-area"
+>
+  <Card
+    canDelete={false}
+    cardData={
+      Object {
+        "definition": "An application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the app to run. Any interactions don't require a trip to server/page reload.",
+        "example": "./images/example{exampleId}.png",
+        "fakeAnswers": Array [
+          "Webpack",
+          "Responsive Website",
+        ],
+        "id": 1,
+        "term": "Single-page Application",
+      }
+    }
+    hasTerm={false}
+  />
+  <Guess
+    answer="Single-page Application"
+    choices={
+      Array [
+        "Webpack",
+        "Responsive Website",
+        "Single-page Application",
+      ]
+    }
+    getRandomCard={[Function]}
+    mode="Guess"
+    removeCard={[Function]}
+  />
+  <article
+    className="progress-area"
+  >
+    <p>
+      <span>
+        0
+      </span>
+       of 
+      <span>
+        4
+      </span>
+    </p>
+    <div
+      className="progress-chart"
+      style={
+        Object {
+          "animationDelay": "-0s",
+        }
+      }
+    />
+  </article>
+</section>
+`;

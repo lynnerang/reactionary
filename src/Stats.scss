@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+.stats-heading {
+  margin-bottom: 15px;
+}
+
+.stat {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+
+  .fas {
+    font-size: 60px;
+    margin-right: 20px;
+  }
+
+  .fa-check-double {
+    color: $primary-color;
+  }
+
+  .fa-trophy {
+    color: rgba(255, 196, 0, 0.653)
+  }
+
+  .fa-stream {
+    color: $blue;
+  }
+
+  p {
+    margin-bottom: 8px;
+
+    span {
+      font-weight: 400;
+    }
+  }
+}

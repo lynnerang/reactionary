@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Play Should match the snapshot 1`] = `
+<Fragment>
+  <h2>
+    Play
+  </h2>
+  <Switch>
+    <Route
+      exact={true}
+      path="/play"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/play/guess"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/play/choice"
+      render={[Function]}
+    />
+    <Route
+      path="/play/review"
+      render={[Function]}
+    />
+  </Switch>
+</Fragment>
+`;

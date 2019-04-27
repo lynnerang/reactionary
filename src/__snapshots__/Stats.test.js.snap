@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stats Should match the snapshot 1`] = `
+<Fragment>
+  <h2>
+    Stats
+  </h2>
+  <div
+    className="stat"
+  >
+    <i
+      className="fas fa-check-double"
+    />
+    <div>
+      <h3
+        className="stats-heading"
+      >
+        Total Games Completed
+      </h3>
+      <p>
+        You have completed a total of 
+        2
+         games!
+      </p>
+    </div>
+  </div>
+  <div
+    className="stat"
+  >
+    <div>
+      <i
+        className="fas fa-trophy"
+      />
+    </div>
+    <div>
+      <h3
+        className="stats-heading"
+      >
+        Guess Mode High Score
+      </h3>
+      <p>
+        Your best Guess Mode game was answering 
+        4
+         questions with 
+        6
+         guesses!
+      </p>
+    </div>
+  </div>
+  <div
+    className="stat"
+  >
+    <div>
+      <i
+        className="fas fa-trophy"
+      />
+    </div>
+    <div>
+      <h3
+        className="stats-heading"
+      >
+        Choice Mode High Score
+      </h3>
+      <p>
+        Your best Choice mode game was answering 
+        4
+         questions with 
+        6
+         guesses!
+      </p>
+    </div>
+  </div>
+  <div
+    className="stat"
+  >
+    <div>
+      <i
+        className="fas fa-stream"
+      />
+    </div>
+    <div>
+      <h3
+        className="stats-heading"
+      >
+        Most Cards Answered
+      </h3>
+      <p>
+        The most cards you've answered in a single game is 0!
+      </p>
+    </div>
+  </div>
+</Fragment>
+`;
